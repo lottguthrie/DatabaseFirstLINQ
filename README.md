@@ -1,2 +1,1 @@
 # DatabaseFirstLINQ
-Database LINQ project
