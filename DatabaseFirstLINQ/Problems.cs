@@ -26,7 +26,7 @@ namespace DatabaseFirstLINQ
             //ProblemNine();
             //ProblemTen();
             //ProblemEleven();
-            ProblemTwelve();
+            //ProblemTwelve();
             //ProblemThirteen();
             //ProblemFourteen();
             //ProblemFifteen();
@@ -150,14 +150,8 @@ namespace DatabaseFirstLINQ
             // HINT: End of query will be: .Select(sc => sc.Product.Price).Sum();
             // Then print the total of the shopping cart to the console.
             var userId = _context.Users.Where(u => u.Email == "oda@gmail.com").Select(u => u.Id).SingleOrDefault();
-<<<<<<< HEAD
             var shoppingCart = _context.ShoppingCarts.Include(sc => sc.UserId).Include(sc => sc.Product).Select(sc => sc.Product.Price).Sum();;
             //ShoppingCart shoppingcart = userId
-=======
-            var shoppingCart = _context.ShoppingCarts.Include(sc => sc.UserId).Include(sc => sc.Product).Select(sc => sc.Product.Price).Sum();
-            int sum = Price.AsEnumerable().Sum(row => row.Field<int>("Price"));
-
->>>>>>> 6bd6bcb8f6fdba7ec3acce8c8f9ba2274763b504
             {
                 Console.WriteLine(Sum(shoppingCart));
             }
@@ -266,13 +260,13 @@ namespace DatabaseFirstLINQ
             _context.SaveChanges();
         }
 
-    }
-
         private void ProblemNineteen()
         {
-            // Delete all of the product relationships to the user with the email "oda@gmail.com" in the ShoppingCart table using LINQ.
-            // HINT: Loop
+        // Delete all of the product relationships to the user with the email "oda@gmail.com" in the ShoppingCart table using LINQ.
+        // HINT: Loop
+        
             var shoppingCartProducts = _context.ShoppingCarts.Where(sc => sc.User.Email == "oda@gmail.com");
+
             foreach (ShoppingCart userProductRelationship in shoppingCartProducts)
             {
                 _context.ShoppingCarts.Remove(userProductRelationship);
