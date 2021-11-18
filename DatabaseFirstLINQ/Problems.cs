@@ -216,7 +216,8 @@ namespace DatabaseFirstLINQ
 
         private void ProblemFourteen()
         {
-            // Add the product you create to the user we created in the ShoppingCart junction table using LINQ.
+            var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).SingleOrDefault();
+            var addProduct = _context.Products.Where(p => p.Name == "Hot Cheetos").Select(_context => _context.Id).SingleOrDefault();
            
         }
 
@@ -258,8 +259,14 @@ namespace DatabaseFirstLINQ
         private void ProblemEighteen()
         {
             // Delete the role relationship from the user who has the email "oda@gmail.com" using LINQ.
-
+            var userRole = _context.UserRoles.Where(ur => ur.User.Email == "oda@gmail.com").SingleOrDefault();
+            {
+                _context.UserRoles.Remove(userRole);
+            }
+            _context.SaveChanges();
         }
+
+    }
 
         private void ProblemNineteen()
         {
@@ -275,13 +282,19 @@ namespace DatabaseFirstLINQ
 
         private void ProblemTwenty()
         {
-            // Delete the user with the email "oda@gmail.com" from the Users table using LINQ.
-
+        // Delete the user with the email "oda@gmail.com" from the Users table using LINQ.
+        {
+            var user = _context.Users.Where(ur => ur.Email == "oda@gmail.com").SingleOrDefault();
+            {
+                _context.Users.Remove(user);
+            }
+            _context.SaveChanges();
         }
+    }
 
-        // <><><><><><><><> BONUS PROBLEMS <><><><><><><><><>
+    // <><><><><><><><> BONUS PROBLEMS <><><><><><><><><>
 
-        private void BonusOne()
+    private void BonusOne()
         {
             // Prompt the user to enter in an email and password through the console.
             // Take the email and password and check if the there is a person that matches that combination.
