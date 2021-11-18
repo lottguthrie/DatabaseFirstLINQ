@@ -153,7 +153,7 @@ namespace DatabaseFirstLINQ
             var shoppingCart = _context.ShoppingCarts.Include(sc => sc.UserId).Include(sc => sc.Product).Select(sc => sc.Product.Price).Sum();;
             //ShoppingCart shoppingcart = userId
             {
-                Console.WriteLine(Sum(shoppingCart));
+                Console.WriteLine($"Total = {shoppingCart}");
             }
         }
 
@@ -314,6 +314,12 @@ namespace DatabaseFirstLINQ
         {
             // Write a query that finds the total of every users shopping cart products using LINQ.
             // Display the total of each users shopping cart as well as the total of the toals to the console.
+            var userOne = _context.ShoppingCarts.Where(predicate: u => u.UserId == 1m).Include(q => q.Quantity);
+           //PROBLEM NOT COMPLETE
+            foreach (ShoppingCart shoppingCart in userOne)
+            {
+                Console.WriteLine(userOne);
+            }
 
         }
 
