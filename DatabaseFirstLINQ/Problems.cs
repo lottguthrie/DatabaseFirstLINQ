@@ -28,7 +28,7 @@ namespace DatabaseFirstLINQ
             //ProblemEleven();
             //ProblemTwelve();
             //ProblemThirteen();
-            //ProblemFourteen();
+            ProblemFourteen();
             //ProblemFifteen();
             //ProblemSixteen();
             //ProblemSeventeen();
@@ -182,17 +182,16 @@ namespace DatabaseFirstLINQ
 
         private void ProblemTwelve()
         {
-                // Create a new Product object and add that product to the Products table using LINQ.
-                Product newProduct = new Product()
-                {
-                    Name = "Hot Cheetos",
-                    Description = "They Yummy",
-                    Price = 6,
-                    
-                };
-                _context.Products.Add(newProduct);
-                _context.SaveChanges();
-            }
+            // Create a new Product object and add that product to the Products table using LINQ.
+            Product newProduct = new Product()
+            {
+                Name = "Keurig",
+                Description = "K-Cup Pod Coffee",
+                Price = 70m
+            };
+            _context.Products.Add(newProduct);
+            _context.SaveChanges();
+        }
 
         private void ProblemThirteen()
         {
@@ -211,8 +210,14 @@ namespace DatabaseFirstLINQ
         private void ProblemFourteen()
         {
             var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).SingleOrDefault();
-            var addProduct = _context.Products.Where(p => p.Name == "Hot Cheetos").Select(_context => _context.Id).SingleOrDefault();
-           
+            var addProduct = _context.Products.Where(p => p.Name == "K-Cup Pod Coffee").Select(_context => _context.Id).SingleOrDefault();
+            ShoppingCart newProduct = new ShoppingCart()
+            {
+                UserId = userId,
+                ProductId = addProduct
+            };
+            _context.ShoppingCarts.Add(newProduct);
+            _context.SaveChanges();
         }
 
         // <><> U Actions (Update) <><>
