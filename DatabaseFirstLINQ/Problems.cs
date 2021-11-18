@@ -149,9 +149,9 @@ namespace DatabaseFirstLINQ
             // Write a LINQ query that retreives all of the products in the shopping cart of the user who has the email "oda@gmail.com" and returns the sum of all of the products prices.
             // HINT: End of query will be: .Select(sc => sc.Product.Price).Sum();
             // Then print the total of the shopping cart to the console.
-            var shoppingCarts = _context.Users.Include(u => u.Id).Where(u => u.Email == "oda@gmail.com").Include(sc => sc.Product).Select(sc => sc.Product.Price).Sum();;
-            
-            
+            var userId = _context.Users.Where(u => u.Email == "oda@gmail.com").Select(u => u.Id).SingleOrDefault();
+            var shoppingCart = _context.ShoppingCarts.Include(sc => sc.UserId).Include(sc => sc.Product).Select(sc => sc.Product.Price).Sum();;
+            ShoppingCart shoppingcart = userId
             {
                 Console.WriteLine("Hello World");
             }
@@ -162,15 +162,7 @@ namespace DatabaseFirstLINQ
             // Write a LINQ query that retreives all of the products in the shopping cart of users who have the role of "Employee".
             // Then print the user's email as well as the product's name, price, and quantity to the console.
 
-            var userIds = _context.UserRoles.Include(ur => ur.Role).Include(ur => ur.User).Where(ur => ur.Role.RoleName == "Employee").Select(ur => ur.User.Id).ToList();
-            var shoppingCartRows = _context.ShoppingCarts.Include(sc => sc.Product).Include(sc => sc.User).Where(sc => userIds.Contains(sc.User.Id));
-            foreach (ShoppingCart scRow in shoppingCartRows)
-            {
-                Console.WriteLine($"Email: {scRow.User.Email} Product Name: {scRow.Product.Name} Product Price: {scRow.Product.Price} Quatity: {scRow.Quantity}");
-            }
         }
-
-    }
 
         // <><><><><><><><> CUD (Create, Update, Delete) Actions <><><><><><><><><>
 
@@ -190,9 +182,15 @@ namespace DatabaseFirstLINQ
 
         private void ProblemTwelve()
         {
-            // Create a new Product object and add that product to the Products table using LINQ.
-
-        }
+                // Create a new Product object and add that product to the Products table using LINQ.
+                User newProduct = new Product()
+                {
+                    Email = "david@gmail.com",
+                    Password = "DavidsPass123"
+                };
+                _context.Users.Add(newUser);
+                _context.SaveChanges();
+            }
 
         private void ProblemThirteen()
         {
