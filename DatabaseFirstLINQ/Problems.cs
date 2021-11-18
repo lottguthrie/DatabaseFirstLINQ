@@ -23,10 +23,10 @@ namespace DatabaseFirstLINQ
             //ProblemSix();
             //ProblemSeven();
             //ProblemEight();
-            ProblemNine();
+            //ProblemNine();
             //ProblemTen();
             //ProblemEleven();
-            //ProblemTwelve();
+            ProblemTwelve();
             //ProblemThirteen();
             //ProblemFourteen();
             //ProblemFifteen();
@@ -151,7 +151,7 @@ namespace DatabaseFirstLINQ
             // Then print the total of the shopping cart to the console.
             var userId = _context.Users.Where(u => u.Email == "oda@gmail.com").Select(u => u.Id).SingleOrDefault();
             var shoppingCart = _context.ShoppingCarts.Include(sc => sc.UserId).Include(sc => sc.Product).Select(sc => sc.Product.Price).Sum();;
-            ShoppingCart shoppingcart = userId
+            //ShoppingCart shoppingcart = userId
             {
                 Console.WriteLine("Hello World");
             }
@@ -183,12 +183,14 @@ namespace DatabaseFirstLINQ
         private void ProblemTwelve()
         {
                 // Create a new Product object and add that product to the Products table using LINQ.
-                User newProduct = new Product()
+                Product newProduct = new Product()
                 {
-                    Email = "david@gmail.com",
-                    Password = "DavidsPass123"
+                    Name = "Hot Cheetos",
+                    Description = "They Yummy",
+                    Price = 6,
+                    
                 };
-                _context.Users.Add(newUser);
+                _context.Products.Add(newProduct);
                 _context.SaveChanges();
             }
 
@@ -209,7 +211,7 @@ namespace DatabaseFirstLINQ
         private void ProblemFourteen()
         {
             // Add the product you create to the user we created in the ShoppingCart junction table using LINQ.
-
+           
         }
 
         // <><> U Actions (Update) <><>
