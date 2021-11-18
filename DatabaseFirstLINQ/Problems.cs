@@ -149,11 +149,11 @@ namespace DatabaseFirstLINQ
             // Write a LINQ query that retreives all of the products in the shopping cart of the user who has the email "oda@gmail.com" and returns the sum of all of the products prices.
             // HINT: End of query will be: .Select(sc => sc.Product.Price).Sum();
             // Then print the total of the shopping cart to the console.
-            var customerUsers = _context.Users.Include(u => u.Id).Where(u => u.Email == "oda@gmail.com");
-            var shoppingCarts = _context.ShoppingCarts.Include(sc => sc.Product).Select(sc => sc.Product.Price).Sum();
-            foreach (Product product in Product.Sum)
+            var shoppingCarts = _context.Users.Include(u => u.Id).Where(u => u.Email == "oda@gmail.com").Include(sc => sc.Product).Select(sc => sc.Product.Price).Sum();;
+            
+            
             {
-                Console.WriteLine($"Product Sum: {shoppingCarts.Sum()}");
+                Console.WriteLine("Hello World");
             }
         }
 
